@@ -63,6 +63,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Export"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ExportActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Exit">
       <Properties>

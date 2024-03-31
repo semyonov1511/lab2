@@ -5,7 +5,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GUI extends javax.swing.JFrame {
+
     public double[][] mas;
+    ExcelProvider provider = new ExcelProvider();
     public GUI() {
         initComponents();
     }
@@ -28,6 +30,11 @@ public class GUI extends javax.swing.JFrame {
         });
 
         Export.setText("Export");
+        Export.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportActionPerformed(evt);
+            }
+        });
 
         Exit.setText("Exit");
 
@@ -60,16 +67,20 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportActionPerformed
-        ExcelProvider provider = new ExcelProvider();
-        try {
+      try {
             mas = provider.readExcel();
         } catch (IOException ex) {
-            System.out.println("Ошибка чтения файла");
-        }
-        for (int i=0; i<100; i++){
-            System.out.println(mas[2][i]);
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ImportActionPerformed
+
+    private void ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportActionPerformed
+        try {
+            provider.writeExcel(mas);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ExportActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
