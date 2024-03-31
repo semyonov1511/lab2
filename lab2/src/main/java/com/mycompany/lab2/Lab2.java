@@ -6,8 +6,6 @@ import java.io.IOException;
 public class Lab2 {
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Hello World!");
-        ExcelProvider provider = new ExcelProvider();
-        provider.readExcel();
+        (new GUI()).setVisible(true);
     }
 }
