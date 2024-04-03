@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 public class GUI extends javax.swing.JFrame {
 
-    public double[][] mas;
+    Repository repository = new Repository();
     ExcelProvider provider = new ExcelProvider();
     public GUI() {
         initComponents();
@@ -37,6 +37,11 @@ public class GUI extends javax.swing.JFrame {
         });
 
         Exit.setText("Exit");
+        Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,7 +73,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void ImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportActionPerformed
       try {
-            mas = provider.readExcel();
+            repository.setMas(provider.readExcel());
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,11 +81,15 @@ public class GUI extends javax.swing.JFrame {
 
     private void ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportActionPerformed
         try {
-            provider.writeExcel(mas);
+            provider.writeExcel(repository.getMas());
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ExportActionPerformed
+
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_ExitActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
