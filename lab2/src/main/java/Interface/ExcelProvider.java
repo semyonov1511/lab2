@@ -40,14 +40,15 @@ public class ExcelProvider {
         XSSFSheet sheet = book.createSheet("Полученные значения");
         String[] names = {"Среднее геометрическое", "Среднее арифметическое", "Оценка стандартного отклонения", "Размах", "Коэффициенты ковариации", "Количество элементов",
             "Коэффициент вариации", "Доверительный интервал", "Оценка дисперсии", "Максимум", "Минимум"};
-
         for (int i = 0; i < 11; i++) {
             Row row = sheet.createRow(i);
+            int cellNumber = 0;
             for (int j = 0; j < 3; j++) {
-                Cell name = row.createCell(j);
-                name.setCellValue(names[i] + " для " + j + "-й выборки: ");
-                Cell x = row.createCell(j + 1);
+                Cell name = row.createCell(cellNumber);
+                name.setCellValue(names[i] + " для " + (j+1) + "-й выборки: ");
+                Cell x = row.createCell(cellNumber+1);
                 x.setCellValue(Repository.getInstance().Decider(i, j));
+                cellNumber += 2;
             }
             sheet.autoSizeColumn(i);
         }
