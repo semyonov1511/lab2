@@ -64,7 +64,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        com.mypackage.Main
+                                        lab2.Lab2
                                     </mainClass>
                                 </manifest>
                             </archive>

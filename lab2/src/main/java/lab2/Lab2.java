@@ -1,9 +1,9 @@
-package com.mypackage.main;
+package lab2;
 
 import Interface.*;
 import java.io.IOException;
 
-public class Main {
+public class Lab2 {
 
     public static void main(String[] args) throws IOException {
         (new GUI()).setVisible(true);
