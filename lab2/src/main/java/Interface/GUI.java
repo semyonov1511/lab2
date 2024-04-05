@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 
 public class GUI extends javax.swing.JFrame {
 
-    Repository repository = new Repository();
     ExcelProvider provider = new ExcelProvider();
     public GUI() {
         initComponents();
@@ -73,7 +72,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void ImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportActionPerformed
       try {
-            repository.setMas(provider.readExcel());
+            Repository.getInstance().setMas(provider.readExcel());
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -81,7 +80,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportActionPerformed
         try {
-            provider.writeExcel(repository.getMas());
+            provider.writeExcel(Repository.getInstance().getMas());
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }

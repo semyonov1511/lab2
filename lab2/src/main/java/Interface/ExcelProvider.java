@@ -3,13 +3,13 @@ package Interface;
 import java.io.*;
 import java.util.Date;
 import java.util.Iterator;
+import org.apache.commons.math3.stat.StatUtils;
 import org.apache.poi.ss.usermodel.*;
 import static org.apache.poi.ss.usermodel.CellType.NUMERIC;
 import org.apache.poi.xssf.usermodel.*;
 
 public class ExcelProvider {
 
-    
     public double[][] readExcel() throws FileNotFoundException, IOException {
         double[][] mas = new double[3][100];
         FileInputStream file = new FileInputStream(new File("ДЗ4.xlsx"));
@@ -37,25 +37,20 @@ public class ExcelProvider {
 
     public void writeExcel(double[][] mas) throws FileNotFoundException, IOException {
         XSSFWorkbook book = new XSSFWorkbook();
-        XSSFSheet sheet = book.createSheet("Лист 1");
-        Row row = sheet.createRow(0);
-        Cell name1 = row.createCell(0);
-        name1.setCellValue("Dispersion in X column: ");
-        
-        Cell x = row.createCell(1);
-        x.setCellValue(Repository.getDispersion(mas, 0));
-        
-        Cell name2 = row.createCell(2);
-        name2.setCellValue("Dispersion in Y column: ");
-        Cell y = row.createCell(3);
-        y.setCellValue(Repository.getDispersion(mas, 1));
-        
-        Cell name3 = row.createCell(4);
-        name3.setCellValue("Dispersion in Z column: ");
-        Cell z = row.createCell(5);
-        z.setCellValue(Repository.getDispersion(mas, 2));
-        
-        sheet.autoSizeColumn(6);
+        XSSFSheet sheet = book.createSheet("Полученные значения");
+        String[] names = {"Среднее геометрическое", "Среднее арифметическое", "Оценка стандартного отклонения", "Размах", "Коэффициенты ковариации", "Количество элементов",
+            "Коэффициент вариации", "Доверительный интервал", "Оценка дисперсии", "Максимум", "Минимум"};
+
+        for (int i = 0; i < 11; i++) {
+            Row row = sheet.createRow(i);
+            for (int j = 0; j < 3; j++) {
+                Cell name = row.createCell(j);
+                name.setCellValue(names[i] + " для " + j + "-й выборки: ");
+                Cell x = row.createCell(j + 1);
+                x.setCellValue(Repository.getInstance().Decider(i, j));
+            }
+            sheet.autoSizeColumn(i);
+        }
         book.write(new FileOutputStream("краб.xlsx"));
         book.close();
     }
