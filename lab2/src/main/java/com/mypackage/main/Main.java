@@ -1,10 +1,9 @@
-package com.mycompany.lab2;
+package com.mypackage.main;
 
 import Interface.*;
 import java.io.IOException;
-import org.apache.commons.math3.stat.StatUtils;
 
-public class Lab2 {
+public class Main {
 
     public static void main(String[] args) throws IOException {
         (new GUI()).setVisible(true);
