@@ -5,7 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GUI extends javax.swing.JFrame {
-
     ExcelProvider provider = new ExcelProvider();
     public GUI() {
         initComponents();
