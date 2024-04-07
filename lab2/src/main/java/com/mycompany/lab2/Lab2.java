@@ -1,4 +1,4 @@
-package lab2;
+package com.mycompany.lab2;
 
 import Interface.*;
 import java.io.IOException;
