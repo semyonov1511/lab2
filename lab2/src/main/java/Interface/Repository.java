@@ -5,7 +5,7 @@ import org.apache.commons.math3.stat.correlation.Covariance;
 
 public class Repository {
 
-    Covariance x = new Covariance();
+    Covariance covariance = new Covariance();
     private static Repository INSTANCE;
 
     public static Repository getInstance() {
@@ -14,7 +14,9 @@ public class Repository {
         }
         return INSTANCE;
     }
+
     public double[][] mas;
+    public double[][] Parameters = new double[11][3];
 
     public double[][] getMas() {
         return mas;
@@ -24,25 +26,36 @@ public class Repository {
         mas = a;
     }
 
+    public double[][] getParameters() {
+        return Parameters;
+    }
+    
+    public void setParameters(){
+        for (int i=0; i<11; i++){
+            for (int j=0; j<3; j++){
+                
+            }
+        }
+    }
     public double Decider(int i, int j) {
         switch (i) {
             case 0 -> {
-                return StatUtils.geometricMean(mas[j]);
+                return getAverageGeom(mas, j);
             }
             case 1 -> {
-                return StatUtils.mean(mas[j]);
+                return getAverage(mas, j);
             }
             case 2 -> {
-                return Math.sqrt(StatUtils.variance(mas[j]));
+                return getStandartDeivation(mas, j);
             }
             case 3 -> {
-                return StatUtils.max(mas[j]) - StatUtils.min(mas[j]);
+                return getRange(mas, j);
             }
             case 4 -> {
                 if (j != 2) {
-                    return x.covariance(mas[j], mas[j + 1]);
+                    return covariance.covariance(mas[j], mas[j + 1]);
                 } else {
-                    return x.covariance(mas[j], mas[j - 2]);
+                    return covariance.covariance(mas[j], mas[j - 2]);
                 }
             }
             case 5 -> {
@@ -68,4 +81,6 @@ public class Repository {
             }
         }
     }
+
+    
 }
