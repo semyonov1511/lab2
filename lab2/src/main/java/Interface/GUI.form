@@ -24,17 +24,12 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="Import" min="-2" pref="152" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="Export" min="-2" pref="152" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="Export" min="-2" pref="152" max="-2" attributes="0"/>
+                  <Component id="Import" min="-2" pref="152" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="124" max="32767" attributes="0"/>
+              <EmptySpace pref="133" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="Exit" min="-2" pref="152" max="-2" attributes="0"/>
                   <Component id="CalculateParameters" min="-2" pref="152" max="-2" attributes="0"/>

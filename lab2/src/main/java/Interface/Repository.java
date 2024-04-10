@@ -15,7 +15,7 @@ public class Repository {
     }
 
     public double[][] mas;
-    public double[][] Parameters = new double[11][3];
+    public double[][] Parameters = new double[12][3];
 
     public double[][] getMas() {
         return mas;
@@ -28,14 +28,19 @@ public class Repository {
     public double[][] getParameters() {
         return Parameters;
     }
-    
-    public void setParameters(){
-        for (int i=0; i<11; i++){
-            for (int j=0; j<3; j++){
-                Parameters[i][j] = Decider(i,j);
+
+    public void setParameters() {
+        if (mas == null) {
+            System.out.println("Import data firstly");
+        } else {
+            for (int i = 0; i < 12; i++) {
+                for (int j = 0; j < 3; j++) {
+                    Parameters[i][j] = Decider(i, j);
+                }
             }
         }
     }
+
     public double Decider(int i, int j) {
         switch (i) {
             case 0 -> {
@@ -51,25 +56,28 @@ public class Repository {
                 return Calculator.getRange(mas, j);
             }
             case 4 -> {
-                return Calculator.getCovariaton(mas,j);
+                return Calculator.getCovariaton(mas, j);
             }
             case 5 -> {
-                return Calculator.getAmount(mas,j);
+                return Calculator.getAmount(mas, j);
             }
             case 6 -> {
-                return Calculator.getVariationCoef(mas,j);
+                return Calculator.getVariationCoef(mas, j);
             }
             case 7 -> {
-                return 0;
+                return Calculator.getIntervalLower(mas, j);
             }
             case 8 -> {
-                return Calculator.getDispersion(mas,j);
+                return Calculator.getIntervalUpper(mas, j);
             }
             case 9 -> {
-                return Calculator.getMax(mas,j);
+                return Calculator.getDispersion(mas, j);
             }
             case 10 -> {
-                return Calculator.getMin(mas,j);
+                return Calculator.getMax(mas, j);
+            }
+            case 11 -> {
+                return Calculator.getMin(mas, j);
             }
             default -> {
                 return 0;
@@ -77,5 +85,4 @@ public class Repository {
         }
     }
 
-    
 }

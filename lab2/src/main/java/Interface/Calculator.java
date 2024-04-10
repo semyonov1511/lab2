@@ -47,12 +47,21 @@ public class Calculator {
         return Math.sqrt(StatUtils.populationVariance(mas[j])) / StatUtils.mean(mas[j]);
     }
 
-    //8
+    //8.1
+    static double getIntervalLower(double[][] mas, int j) {
+        return StatUtils.mean(mas[j]) - 1.65 * Math.sqrt(Math.abs(StatUtils.variance(mas[j])) / mas[j].length);
+    }
+
+    //8.2
+    static double getIntervalUpper(double[][] mas, int j) {
+        return StatUtils.mean(mas[j]) + 1.65 * Math.sqrt(Math.abs(StatUtils.variance(mas[j])) / mas[j].length);
+    }
+
     //9
     static double getDispersion(double[][] mas, int j) {
         return StatUtils.variance(mas[j]);
     }
-    
+
     //10.1
     static double getMax(double[][] mas, int j) {
         return StatUtils.max(mas[j]);
