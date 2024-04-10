@@ -45,7 +45,7 @@ public class ExcelProvider {
                 Cell name = row.createCell(cellNumber);
                 name.setCellValue(names[i] + " для " + (j+1) + "-й выборки: ");
                 Cell x = row.createCell(cellNumber+1);
-                x.setCellValue(Repository.getInstance().Decider(i, j));
+                x.setCellValue((Repository.getInstance().getParameters())[i][j]);
                 cellNumber += 2;
             }
             sheet.autoSizeColumn(i);

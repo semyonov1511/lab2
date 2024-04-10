@@ -1,6 +1,5 @@
 package Interface;
 
-import org.apache.commons.math3.stat.StatUtils;
 import org.apache.commons.math3.stat.correlation.Covariance;
 
 public class Repository {
@@ -33,51 +32,47 @@ public class Repository {
     public void setParameters(){
         for (int i=0; i<11; i++){
             for (int j=0; j<3; j++){
-                
+                Parameters[i][j] = Decider(i,j);
             }
         }
     }
     public double Decider(int i, int j) {
         switch (i) {
             case 0 -> {
-                return getAverageGeom(mas, j);
+                return Calculator.getAverageGeom(mas, j);
             }
             case 1 -> {
-                return getAverage(mas, j);
+                return Calculator.getAverage(mas, j);
             }
             case 2 -> {
-                return getStandartDeivation(mas, j);
+                return Calculator.getStandartDeivation(mas, j);
             }
             case 3 -> {
-                return getRange(mas, j);
+                return Calculator.getRange(mas, j);
             }
             case 4 -> {
-                if (j != 2) {
-                    return covariance.covariance(mas[j], mas[j + 1]);
-                } else {
-                    return covariance.covariance(mas[j], mas[j - 2]);
-                }
+                return Calculator.getCovariaton(mas,j);
             }
             case 5 -> {
-                return mas[j].length;
+                return Calculator.getAmount(mas,j);
             }
             case 6 -> {
-                return Math.sqrt(StatUtils.populationVariance(mas[j])) / StatUtils.mean(mas[j]);
+                return Calculator.getVariationCoef(mas,j);
             }
             case 7 -> {
                 return 0;
             }
             case 8 -> {
-                return StatUtils.variance(mas[j]);
+                return Calculator.getDispersion(mas,j);
             }
             case 9 -> {
-                return StatUtils.max(mas[j]);
+                return Calculator.getMax(mas,j);
             }
             case 10 -> {
-                return StatUtils.min(mas[j]);
+                return Calculator.getMin(mas,j);
             }
             default -> {
-                return StatUtils.geometricMean(mas[j]);
+                return 0;
             }
         }
     }
