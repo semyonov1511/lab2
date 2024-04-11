@@ -1,10 +1,9 @@
 package Interface;
 
-import org.apache.commons.math3.stat.correlation.Covariance;
+import java.util.ArrayList;
 
 public class Repository {
-
-    Covariance covariance = new Covariance();
+    
     private static Repository INSTANCE;
 
     public static Repository getInstance() {
@@ -15,7 +14,7 @@ public class Repository {
     }
 
     public double[][] mas;
-    public double[][] Parameters = new double[12][3];
+    public double[][] Parameters;
 
     public double[][] getMas() {
         return mas;
@@ -33,8 +32,9 @@ public class Repository {
         if (mas == null) {
             System.out.println("Import data firstly");
         } else {
+            Parameters = new double[12][getMas().length];
             for (int i = 0; i < 12; i++) {
-                for (int j = 0; j < 3; j++) {
+                for (int j = 0; j < getMas().length; j++) {
                     Parameters[i][j] = Decider(i, j);
                 }
             }

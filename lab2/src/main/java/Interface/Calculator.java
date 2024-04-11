@@ -29,7 +29,7 @@ public class Calculator {
 
     //5
     static double getCovariaton(double[][] mas, int j) {
-        if (j != 2) {
+        if (j != Repository.getInstance().getMas().length-1) {
             return covariance.covariance(mas[j], mas[j + 1]);
         } else {
             return covariance.covariance(mas[j], mas[j - 2]);

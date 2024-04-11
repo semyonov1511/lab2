@@ -5,7 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GUI extends javax.swing.JFrame {
-    ExcelProvider provider = new ExcelProvider();
+    Manager manager = new Manager();
     public GUI() {
         initComponents();
     }
@@ -83,7 +83,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void ImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportActionPerformed
         try {
-            Repository.getInstance().setMas(provider.readExcel());
+            manager.Import();
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -91,7 +91,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportActionPerformed
         try {
-            provider.writeExcel(Repository.getInstance().getMas());
+            manager.Export();
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -102,7 +102,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitActionPerformed
 
     private void CalculateParametersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculateParametersActionPerformed
-        Repository.getInstance().setParameters();
+        manager.Calculate();
     }//GEN-LAST:event_CalculateParametersActionPerformed
 
     public static void main(String args[]) {
