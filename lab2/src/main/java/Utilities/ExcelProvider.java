@@ -15,10 +15,14 @@ public class ExcelProvider {
         FileInputStream file = new FileInputStream(new File("ДЗ4.xlsx"));
         XSSFWorkbook workbook = new XSSFWorkbook(file);
         XSSFSheet sheet;
-        if (a){
-            sheet = workbook.getSheetAt(Integer.parseInt(which));
-        }
-        else{
+        if (a) {
+            try {
+                sheet = workbook.getSheetAt(Integer.parseInt(which));
+            } catch (NumberFormatException e) {
+                sheet = workbook.getSheetAt(Integer.parseInt("0"));
+                System.out.println("Введите число корректно");
+            }
+        } else {
             sheet = workbook.getSheetAt(Integer.parseInt(which));
         }
         ArrayList<Double> sample = new ArrayList<>();
