@@ -1,18 +1,6 @@
 package Interface;
 
-import org.apache.commons.math3.stat.correlation.Covariance;
-
 public class Repository {
-
-    Covariance covariance = new Covariance();
-    private static Repository INSTANCE;
-
-    public static Repository getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Repository();
-        }
-        return INSTANCE;
-    }
 
     public double[][] mas;
     public double[][] Parameters = new double[12][3];
@@ -43,45 +31,44 @@ public class Repository {
 
     public double Decider(int i, int j) {
         switch (i) {
-            case 0 -> {
+            case 0:
                 return Calculator.getAverageGeom(mas, j);
-            }
-            case 1 -> {
+
+            case 1:
                 return Calculator.getAverage(mas, j);
-            }
-            case 2 -> {
+
+            case 2:
                 return Calculator.getStandartDeivation(mas, j);
-            }
-            case 3 -> {
+
+            case 3:
                 return Calculator.getRange(mas, j);
-            }
-            case 4 -> {
+
+            case 4:
                 return Calculator.getCovariaton(mas, j);
-            }
-            case 5 -> {
+
+            case 5:
                 return Calculator.getAmount(mas, j);
-            }
-            case 6 -> {
+
+            case 6:
                 return Calculator.getVariationCoef(mas, j);
-            }
-            case 7 -> {
+
+            case 7:
                 return Calculator.getIntervalLower(mas, j);
-            }
-            case 8 -> {
+
+            case 8:
                 return Calculator.getIntervalUpper(mas, j);
-            }
-            case 9 -> {
+
+            case 9:
                 return Calculator.getDispersion(mas, j);
-            }
-            case 10 -> {
+
+            case 10:
                 return Calculator.getMax(mas, j);
-            }
-            case 11 -> {
+
+            case 11:
                 return Calculator.getMin(mas, j);
-            }
-            default -> {
+
+            default:
                 return 0;
-            }
         }
     }
 

@@ -8,9 +8,9 @@ import org.apache.poi.xssf.usermodel.*;
 
 public class ExcelProvider {
 
-    public double[][] readExcel() throws FileNotFoundException, IOException {
+    public double[][] readExcel(File FILE) throws FileNotFoundException, IOException {
         double[][] mas = new double[3][100];
-        FileInputStream file = new FileInputStream(new File("ДЗ4.xlsx"));
+        FileInputStream file = new FileInputStream(FILE);
         XSSFWorkbook workbook = new XSSFWorkbook(file);
         XSSFSheet sheet = workbook.getSheetAt(8);
         int i = -1;
@@ -21,9 +21,9 @@ public class ExcelProvider {
             while (cellIterator.hasNext()) {
                 Cell cell = cellIterator.next();
                 switch (cell.getCellType()) {
-                    case NUMERIC -> {
+                    case NUMERIC:
                         mas[j][i] = (double) cell.getNumericCellValue();
-                    }
+                    
                 }
                 j = j + 1;
             }

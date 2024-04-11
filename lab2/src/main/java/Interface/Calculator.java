@@ -68,7 +68,7 @@ public class Calculator {
     }
 
     //10.2
-    static double getMin(double[][] mas, int j) {
+        static double getMin(double[][] mas, int j) {
         return StatUtils.min(mas[j]);
     }
 
