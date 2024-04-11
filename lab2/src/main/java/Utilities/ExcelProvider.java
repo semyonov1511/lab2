@@ -1,5 +1,6 @@
-package Interface;
+package Utilities;
 
+import Utilities.Repository;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,11 +10,17 @@ import org.apache.poi.xssf.usermodel.*;
 
 public class ExcelProvider {
 
-    public double[][] readExcel() throws FileNotFoundException, IOException {
+    public double[][] readExcel(String which, boolean a) throws FileNotFoundException, IOException {
         ArrayList<ArrayList<Double>> list = new ArrayList<>();
         FileInputStream file = new FileInputStream(new File("ДЗ4.xlsx"));
         XSSFWorkbook workbook = new XSSFWorkbook(file);
-        XSSFSheet sheet = workbook.getSheetAt(8);
+        XSSFSheet sheet;
+        if (a){
+            sheet = workbook.getSheetAt(Integer.parseInt(which));
+        }
+        else{
+            sheet = workbook.getSheetAt(Integer.parseInt(which));
+        }
         ArrayList<Double> sample = new ArrayList<>();
         for (Row row : sheet) {
             sample = new ArrayList<>();
