@@ -1,19 +1,25 @@
 package Utilities;
 
-import Utilities.Repository;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.exceptions.NotOfficeXmlFileException;
 import org.apache.poi.ss.usermodel.*;
 import static org.apache.poi.ss.usermodel.CellType.NUMERIC;
 import org.apache.poi.xssf.usermodel.*;
 
 public class ExcelProvider {
 
-    public double[][] readExcel(String which, boolean a) throws FileNotFoundException, IOException {
+    public double[][] readExcel(File file, String which, boolean a) throws FileNotFoundException, IOException, InvalidFormatException {
         ArrayList<ArrayList<Double>> list = new ArrayList<>();
-        FileInputStream file = new FileInputStream(new File("ДЗ4.xlsx"));
-        XSSFWorkbook workbook = new XSSFWorkbook(file);
+        XSSFWorkbook workbook = null;
+        try {
+            workbook = new XSSFWorkbook(file);
+        } catch (NotOfficeXmlFileException e){
+            System.out.println("This is not a valid .xlsx file");
+            System.exit(0);
+        }
         XSSFSheet sheet;
         if (a) {
             try {
@@ -51,7 +57,6 @@ public class ExcelProvider {
                 mas[j][i] = list.get(i).get(j);
             }
         }
-        file.close();
         return mas;
     }
 

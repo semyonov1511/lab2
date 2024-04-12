@@ -1,10 +1,14 @@
 package Interface;
 
 import Utilities.Manager;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
+import javax.swing.JFileChooser;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 public class GUI extends javax.swing.JFrame {
 
@@ -128,13 +132,22 @@ public class GUI extends javax.swing.JFrame {
 
     private void ImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportActionPerformed
         try {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setCurrentDirectory(new File("."));
+            int response = chooser.showOpenDialog(null);
+            if (chooser.getSelectedFile()==null){
+                System.out.println("Choose a file!");
+            }
+            else {
+            File file = new File(chooser.getSelectedFile().getAbsolutePath());
             if (IndexForList.isSelected()) {
-                manager.Import(ListChooser.getText(),true);
+                manager.Import(file, ListChooser.getText(), true);
             }
             if (TextForList.isSelected()) {
-                manager.Import(ListChooser.getText(),false);
+                manager.Import(file, ListChooser.getText(), false);
             }
-        } catch (IOException ex) {
+            }
+        } catch (IOException | InvalidFormatException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ImportActionPerformed
