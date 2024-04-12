@@ -16,7 +16,7 @@ public class GUI extends javax.swing.JFrame {
         group.add(TextForList);
         group.add(IndexForList);
         IndexForList.setSelected(true);
-        ListChooser.setText("0");
+        ListChooser.setText("1");
     }
 
     @SuppressWarnings("unchecked")

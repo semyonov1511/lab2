@@ -17,15 +17,19 @@ public class ExcelProvider {
         XSSFSheet sheet;
         if (a) {
             try {
-                sheet = workbook.getSheetAt(Integer.parseInt(which));
+                sheet = workbook.getSheetAt(Integer.parseInt(which) - 1);
             } catch (NumberFormatException e) {
                 sheet = workbook.getSheetAt(Integer.parseInt("0"));
-                System.out.println("Введите число корректно");
+                System.out.println("Число введено некорректно, данные считаются для первого листа");
             }
         } else {
-            sheet = workbook.getSheetAt(Integer.parseInt(which));
+            sheet = workbook.getSheet(which);
         }
         ArrayList<Double> sample = new ArrayList<>();
+        if (sheet == null) {
+            sheet = workbook.getSheetAt(Integer.parseInt("0"));
+            System.out.println("Число введено некорректно, данные считаются для первого листа");
+        }
         for (Row row : sheet) {
             sample = new ArrayList<>();
             Iterator<Cell> cellIterator = row.cellIterator();
