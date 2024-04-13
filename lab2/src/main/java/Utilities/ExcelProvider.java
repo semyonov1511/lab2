@@ -18,7 +18,7 @@ public class ExcelProvider {
             workbook = new XSSFWorkbook(file);
         } catch (NotOfficeXmlFileException e){
             System.out.println("This is not a valid .xlsx file");
-            System.exit(0);
+            return null;
         }
         XSSFSheet sheet;
         if (a) {

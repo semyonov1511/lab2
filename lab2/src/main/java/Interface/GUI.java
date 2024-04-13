@@ -148,7 +148,7 @@ public class GUI extends javax.swing.JFrame {
             }
             }
         } catch (IOException | InvalidFormatException ex) {
-            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("This is not a valid .xlsx file");
         }
     }//GEN-LAST:event_ImportActionPerformed
 
