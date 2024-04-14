@@ -25,6 +25,9 @@ public class Repository {
     public double[][] getParameters() {
         return Parameters;
     }
+public double getCov(int i, int j) {
+        return Calculator.getCovariaton(mas, i, j);
+    }
 
     public void setParameters() {
         if (mas == null) {
@@ -39,10 +42,6 @@ public class Repository {
         }
     }
     
-    public double getCov(int i, int j) {
-        return Calculator.getCovariaton(mas, i, j);
-    }
-
     public double Decider(int i, int j) {
         switch (i) {
             case 0 -> {

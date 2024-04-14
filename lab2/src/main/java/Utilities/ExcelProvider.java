@@ -80,8 +80,8 @@ public class ExcelProvider {
         XSSFSheet sheet2 = book.createSheet("Матрица ковариации");
         Row row = sheet2.createRow(0);
         for (int j = 0; j < Repository.getInstance().getMas().length; j++) {
-            Cell name = row.createCell(j+1);
-            name.setCellValue("Выборка " + (j+1));
+            Cell name = row.createCell(j + 1);
+            name.setCellValue("Выборка " + (j + 1));
         }
         for (int j = 1; j <= Repository.getInstance().getMas().length; j++) {
             row = sheet2.createRow(j);
@@ -89,13 +89,16 @@ public class ExcelProvider {
             name.setCellValue("Выборка " + j);
             for (int i = 1; i <= Repository.getInstance().getMas().length; i++) {
                 name = row.createCell(i);
-                name.setCellValue(Repository.getInstance().getCov(i-1, j-1));
+                name.setCellValue(Repository.getInstance().getCov(i - 1, j - 1));
             }
-            sheet2.autoSizeColumn(j-1);
+            sheet2.autoSizeColumn(j - 1);
         }
-        
-        book.write(new FileOutputStream("краб.xlsx"));
+        try {
+            book.write(new FileOutputStream("краб.xlsx"));
+            System.out.println("Parameters were exported successfully");
+        } catch (FileNotFoundException e) {
+            System.out.println("Close file firstsly");
+        }
         book.close();
     }
-
 }
