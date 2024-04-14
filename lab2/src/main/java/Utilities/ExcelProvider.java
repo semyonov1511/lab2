@@ -16,7 +16,7 @@ public class ExcelProvider {
         XSSFWorkbook workbook = null;
         try {
             workbook = new XSSFWorkbook(file);
-        } catch (NotOfficeXmlFileException e){
+        } catch (NotOfficeXmlFileException e) {
             System.out.println("This is not a valid .xlsx file");
             return null;
         }
@@ -63,20 +63,37 @@ public class ExcelProvider {
     public void writeExcel(double[][] mas) throws FileNotFoundException, IOException {
         XSSFWorkbook book = new XSSFWorkbook();
         XSSFSheet sheet = book.createSheet("Полученные значения");
-        String[] names = {"Среднее геометрическое", "Среднее арифметическое", "Оценка стандартного отклонения", "Размах", "Коэффициент ковариации с последующей выборкой", "Количество элементов",
+        String[] StatNames = {"Среднее геометрическое", "Среднее арифметическое", "Оценка стандартного отклонения", "Размах", "Коэффициент ковариации с последующей выборкой", "Количество элементов",
             "Коэффициент варации", "Нижняя граница доверительного интервала", "Верхняя граница доверительного интервала", "Оценка дисперсии", "Максимум", "Минимум"};
         for (int i = 0; i < 12; i++) {
             Row row = sheet.createRow(i);
             int cellNumber = 0;
             for (int j = 0; j < Repository.getInstance().getMas().length; j++) {
                 Cell name = row.createCell(cellNumber);
-                name.setCellValue(names[i] + " для " + (j + 1) + "-й выборки: ");
+                name.setCellValue(StatNames[i] + " для " + (j + 1) + "-й выборки: ");
                 Cell x = row.createCell(cellNumber + 1);
                 x.setCellValue((Repository.getInstance().getParameters())[i][j]);
                 cellNumber += 2;
             }
             sheet.autoSizeColumn(i);
         }
+        XSSFSheet sheet2 = book.createSheet("Матрица ковариации");
+        Row row = sheet2.createRow(0);
+        for (int j = 0; j < Repository.getInstance().getMas().length; j++) {
+            Cell name = row.createCell(j+1);
+            name.setCellValue("Выборка " + (j+1));
+        }
+        for (int j = 1; j <= Repository.getInstance().getMas().length; j++) {
+            row = sheet2.createRow(j);
+            Cell name = row.createCell(0);
+            name.setCellValue("Выборка " + j);
+            for (int i = 1; i <= Repository.getInstance().getMas().length; i++) {
+                name = row.createCell(i);
+                name.setCellValue(228);
+            }
+            sheet2.autoSizeColumn(j-1);
+        }
+        
         book.write(new FileOutputStream("краб.xlsx"));
         book.close();
     }
