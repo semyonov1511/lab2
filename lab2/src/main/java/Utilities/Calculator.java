@@ -1,6 +1,8 @@
 package Utilities;
 
 import Utilities.Repository;
+import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.stat.StatUtils;
 import org.apache.commons.math3.stat.correlation.Covariance;
 
@@ -29,13 +31,9 @@ public class Calculator {
     }
 
     //5
-    static double getCovariaton(double[][] mas, int j) {
-        if (j != Repository.getInstance().getMas().length-1) {
-            return covariance.covariance(mas[j], mas[j + 1]);
-        } else {
-            return covariance.covariance(mas[j], mas[j - Repository.getInstance().getMas().length+1]);
-        }
-
+    @SuppressWarnings("empty-statement")
+    static double getCovariaton(double[][] mas, int i, int j) {
+        return covariance.covariance(mas[i], mas[j]);
     }
 
     //6

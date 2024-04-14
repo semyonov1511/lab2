@@ -1,7 +1,5 @@
 package Utilities;
 
-import java.util.ArrayList;
-
 public class Repository {
     
     private static Repository INSTANCE;
@@ -32,13 +30,17 @@ public class Repository {
         if (mas == null) {
             System.out.println("Import data firstly");
         } else {
-            Parameters = new double[12][getMas().length];
-            for (int i = 0; i < 12; i++) {
+            Parameters = new double[11][getMas().length];
+            for (int i = 0; i < 11; i++) {
                 for (int j = 0; j < getMas().length; j++) {
                     Parameters[i][j] = Decider(i, j);
                 }
             }
         }
+    }
+    
+    public double getCov(int i, int j) {
+        return Calculator.getCovariaton(mas, i, j);
     }
 
     public double Decider(int i, int j) {
@@ -56,27 +58,24 @@ public class Repository {
                 return Calculator.getRange(mas, j);
             }
             case 4 -> {
-                return Calculator.getCovariaton(mas, j);
-            }
-            case 5 -> {
                 return Calculator.getAmount(mas, j);
             }
-            case 6 -> {
+            case 5 -> {
                 return Calculator.getVariationCoef(mas, j);
             }
-            case 7 -> {
+            case 6 -> {
                 return Calculator.getIntervalLower(mas, j);
             }
-            case 8 -> {
+            case 7 -> {
                 return Calculator.getIntervalUpper(mas, j);
             }
-            case 9 -> {
+            case 8 -> {
                 return Calculator.getDispersion(mas, j);
             }
-            case 10 -> {
+            case 9 -> {
                 return Calculator.getMax(mas, j);
             }
-            case 11 -> {
+            case 10 -> {
                 return Calculator.getMin(mas, j);
             }
             default -> {

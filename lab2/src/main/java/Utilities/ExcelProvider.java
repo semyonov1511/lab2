@@ -64,8 +64,8 @@ public class ExcelProvider {
         XSSFWorkbook book = new XSSFWorkbook();
         XSSFSheet sheet = book.createSheet("Полученные значения");
         String[] StatNames = {"Среднее геометрическое", "Среднее арифметическое", "Оценка стандартного отклонения", "Размах", "Коэффициент ковариации с последующей выборкой", "Количество элементов",
-            "Коэффициент варации", "Нижняя граница доверительного интервала", "Верхняя граница доверительного интервала", "Оценка дисперсии", "Максимум", "Минимум"};
-        for (int i = 0; i < 12; i++) {
+            "Нижняя граница доверительного интервала", "Верхняя граница доверительного интервала", "Оценка дисперсии", "Максимум", "Минимум"};
+        for (int i = 0; i < 11; i++) {
             Row row = sheet.createRow(i);
             int cellNumber = 0;
             for (int j = 0; j < Repository.getInstance().getMas().length; j++) {
@@ -89,7 +89,7 @@ public class ExcelProvider {
             name.setCellValue("Выборка " + j);
             for (int i = 1; i <= Repository.getInstance().getMas().length; i++) {
                 name = row.createCell(i);
-                name.setCellValue(228);
+                name.setCellValue(Repository.getInstance().getCov(i-1, j-1));
             }
             sheet2.autoSizeColumn(j-1);
         }

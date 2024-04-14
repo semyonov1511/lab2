@@ -1,5 +1,6 @@
 package Interface;
 
+import Utilities.Calculator;
 import Utilities.Manager;
 import java.io.File;
 import java.io.FileNotFoundException;
